@@ -1,0 +1,144 @@
+.product-group {
+  padding: 3em 0em;
+  position: relative;
+
+  .flickity-button {
+    z-index: 9;
+  }
+
+  .flickity-page-dots {
+    bottom: 20px;
+
+    .dot {
+      background: black;
+      opacity: 1;
+      border-radius: 0px;
+      width: 20px;
+      height: 5px;
+
+      &.is-selected {
+        background: $primary;
+      }
+    }
+  }
+  
+  h2 {
+    font-size: 1.1em;
+  }
+
+  &__item {
+    width: 340px;
+    margin-right: 4em;
+  }
+}
+
+
+.visit {
+  position: relative;
+  display: inline-block;
+  color: $primary;
+  text-decoration: none;
+
+  &:hover {
+    .current {
+      transform: translateY(-100%);
+    }
+    .next {
+      transform: translateY(0%);
+    }
+  }
+}
+
+.prev-next {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+
+  .current {
+    position: relative;
+    display: inline-block;
+    transition: all 200ms ease;
+  }
+
+  .next {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    transition: all 200ms ease;
+    transform: translateY(100%);
+  }
+}
+
+.product-group {
+
+  &__titles {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 4;
+    padding-bottom: 2em;
+    justify-content: space-between;
+    
+  }
+
+  &__inner {
+    padding: 0.5em 3em 1.5em 3em;
+  }
+  &__info {
+    width: 100%;
+    margin: auto;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0px 0px 30px rgba(black, 0.1);
+    transform: translate(10%, -30%);
+    font-weight: 800;
+  }
+  &__description {
+    font-size: 0.8em;
+    color: $primary;
+    margin: 0;
+    margin: 0;
+    margin-bottom: 0;
+  }
+
+  &__title {
+    margin-top: 0.2em;
+    font-size: 0.9em;
+    color: $primary;
+  }
+  
+  &__price {
+    margin: 0;
+    padding: 0.4em 0em;
+  }
+}
+
+.flickity-prev-next-button.previous {
+  left: -22px;
+  background: $primary;
+  svg {fill: white; }
+  // transform: translateX(-50%);
+}
+
+.flickity-prev-next-button.next {
+  right: -22px;
+  background: $primary;
+  svg {fill: white; }
+  // transform: translateX(-50%);
+}
+
+@media(min-width: $bp-md) {
+  .fade {
+    background: linear-gradient(
+      to right,
+      rgba(white, 0),
+      white
+    );
+    position: absolute;
+    right: 0; top: 0;
+    height: 100%;
+    width: 30px;
+    z-index: 0;
+  }
+}

@@ -1,0 +1,39 @@
+.button-group {
+  display: flex;
+  flex-direction: column;
+  
+}
+.add-to-cart {
+  @include btn-reset();
+  background-color: $primary;
+  padding: 1.6em 3em;
+  color: white;
+  border-radius: 30px;
+  font-weight: 800;
+  width: 100%;
+  font-size: 0.6em;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.view-details {
+  display: inline-block;
+  margin-bottom: 1em;
+  width: 100%;
+  border: 2px solid $primary;
+  padding: 1em 0em;
+  text-align: center;
+  color: $primary;
+  border-radius: 30px;
+  font-weight: 800;
+  font-size: 0.6em;
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    color: white;
+    background-color: $primary;
+    
+  }
+}
+

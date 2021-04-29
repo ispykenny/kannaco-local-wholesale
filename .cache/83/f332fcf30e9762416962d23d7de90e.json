@@ -1,0 +1,1 @@
+{"id":"{{ section.settings.banner_link }}","dependencies":[{"name":"/Users/kennykrosky/devwork/kannaco-local-build/package.json","includedInParent":true,"mtime":1615608123636}],"generated":{"js":"module.exports = {};"},"sourceMaps":null,"error":null,"hash":"114438ecda8f61c82a4f135d9d513426","cacheData":{"env":{}}}

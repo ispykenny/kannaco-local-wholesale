@@ -1,0 +1,25 @@
+.qty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0em 0em 2em 0em;
+}
+
+.qty_num {
+  margin: 0em 1em;
+  display: inline-block;
+}
+
+.qty button {
+  @include btn-reset();
+  background: #eee;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 100%;
+
+  &:active {
+    top:1px
+  }
+}

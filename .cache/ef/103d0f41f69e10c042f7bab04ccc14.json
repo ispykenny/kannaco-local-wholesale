@@ -1,0 +1,1 @@
+{"id":"{{ link.url }}","dependencies":[{"name":"/Users/kennykrosky/devwork/kannaco-local-build/package.json","includedInParent":true,"mtime":1615608123636}],"generated":{"js":"module.exports = {};"},"sourceMaps":null,"error":null,"hash":"d308faf45469f4e9b761d6f31b981feb","cacheData":{"env":{}}}

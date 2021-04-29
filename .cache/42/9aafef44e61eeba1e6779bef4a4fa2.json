@@ -1,0 +1,1 @@
+{"id":"{{ settings.instagram_link }}","dependencies":[{"name":"/Users/kennykrosky/devwork/kannaco-local-build/package.json","includedInParent":true,"mtime":1615608123636}],"generated":{"js":"module.exports = {};"},"sourceMaps":null,"error":null,"hash":"b36e82bfce786b1eec32e2a37e377b9f","cacheData":{"env":{}}}
