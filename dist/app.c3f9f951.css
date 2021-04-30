@@ -1251,8 +1251,30 @@ footer {
   margin-top: 4em;
 }
 
-footer .inner {
+footer .inner:first-of-type {
   padding: 2.5em 0em;
+}
+
+.footer-group__column ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  padding-top: 1em;
+}
+.footer-group__column li {
+  margin-bottom: 0.5em;
+}
+.footer-group__column li:last-of-type {
+  margin-bottom: 0em;
+}
+.footer-group__column a {
+  color: #707070;
+  text-decoration: none;
+  font-size: 1.4em;
+  transition: color 400ms ease;
+}
+.footer-group__column a:hover {
+  color: #DA6227;
 }
 
 .footer-group__section {
@@ -1277,7 +1299,7 @@ footer .inner {
   margin-bottom: 2em;
 }
 .footer-group h4 {
-  font-size: 0.8em;
+  font-size: 1em;
   margin: 0;
   display: inline-block;
   position: relative;
@@ -1285,25 +1307,71 @@ footer .inner {
 .footer-group h4:after {
   content: "";
   position: absolute;
-  top: -1.5em;
+  top: -2em;
   left: 0;
   width: 30px;
   height: 4px;
   background: #DA6227;
 }
 
+.business-group {
+  margin-top: 2em !important;
+  margin-bottom: 4em !important;
+  display: inline-block;
+}
+.business-group li {
+  margin-bottom: 2em;
+}
+
+.biz {
+  display: flex;
+}
+.biz__icon {
+  background: #DA6227;
+  height: 40px;
+  width: 40px;
+  position: relative;
+  border-radius: 8px;
+  margin-right: 1em;
+  box-shadow: 0px 0px 30px rgba(218, 98, 39, 0.8);
+}
+.biz__icon svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 70% !important;
+  transform: translate(-50%, -50%);
+}
+.biz__blurb {
+  font-size: 0.8em;
+}
+
+.fda {
+  text-align: left;
+  margin-top: 4em;
+}
+.fda p {
+  font-size: 0.9em;
+  margin-bottom: 0;
+  color: #808080;
+}
+
 @media (min-width: 767px) {
-  footer .inner {
-    padding: 4em 0em;
+  footer .inner:first-of-type {
+    padding: 6em 0em 4em 0em;
   }
 
   .footer-group {
     display: flex;
     justify-content: space-between;
   }
+  .footer-group__logo {
+    width: 170px;
+    margin: 0;
+  }
 
   .logo-column {
-    width: 25%;
+    width: 30%;
     margin-right: 3em;
   }
 
@@ -1313,6 +1381,22 @@ footer .inner {
   }
   .footer-group__section .footer-group__column {
     width: 33%;
+  }
+
+  .footer-group__column a {
+    font-size: 1em;
+  }
+
+  .footer-group h4 {
+    font-size: 0.8em;
+  }
+
+  .fda {
+    width: 70%;
+    margin-top: 0em;
+  }
+  .fda p {
+    font-size: 0.7em;
   }
 }
 
