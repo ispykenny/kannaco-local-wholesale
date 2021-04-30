@@ -1,5 +1,5 @@
 .hero {
-  padding: 8em 0em 2em 0em;
+  padding: 8em 0em 0em 0em;
   width: 100%;
   margin: auto;
   position: relative;
@@ -9,12 +9,10 @@
   }
 
   &__el {
-    // background: $primary;
     border-radius: 20px;
   }
 
   &__content {
-    // max-width: 600px;
     color: white;
     padding: 8em 4em;
   }

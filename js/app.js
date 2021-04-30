@@ -4,8 +4,10 @@ import sidenav from './side-nav'
 import product_slider from './product-slider'
 import addToCart from './add-to-cart';
 import sideCart from './side-cart';
-sideCart()
-addToCart()
+import slideNav from './slide-nav';
+sideCart();
+addToCart();
 sidenav();
+slideNav();
 window.addEventListener('load', () => product_slider())
-console.log('js initatied')
+

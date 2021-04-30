@@ -1487,6 +1487,31 @@ function _default() {
     }
   });
 }
+},{}],"js/slide-nav.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _default;
+
+function _default() {
+  var slideNav = function slideNav(event) {
+    event.preventDefault();
+    var $this = $(event.currentTarget);
+    var id = $this.attr('href');
+    var header_height = $('header').height();
+    var nav_height = $('.start-cart').height();
+    var total_heights = header_height + nav_height;
+    $('body, html').animate({
+      scrollTop: $(id).offset().top - total_heights + 'px'
+    });
+  };
+
+  $('.start-cart__nav a').on('click', function (event) {
+    return slideNav(event);
+  });
+}
 },{}],"js/app.js":[function(require,module,exports) {
 "use strict";
 
@@ -1502,16 +1527,18 @@ var _addToCart = _interopRequireDefault(require("./add-to-cart"));
 
 var _sideCart = _interopRequireDefault(require("./side-cart"));
 
+var _slideNav = _interopRequireDefault(require("./slide-nav"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _sideCart.default)();
 (0, _addToCart.default)();
 (0, _sideNav.default)();
+(0, _slideNav.default)();
 window.addEventListener('load', function () {
   return (0, _productSlider.default)();
 });
-console.log('js initatied');
-},{"../styles/style.scss":"styles/style.scss","./lazy-load/index":"js/lazy-load/index.js","./side-nav":"js/side-nav.js","./product-slider":"js/product-slider.js","./add-to-cart":"js/add-to-cart.js","./side-cart":"js/side-cart.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"../styles/style.scss":"styles/style.scss","./lazy-load/index":"js/lazy-load/index.js","./side-nav":"js/side-nav.js","./product-slider":"js/product-slider.js","./add-to-cart":"js/add-to-cart.js","./side-cart":"js/side-cart.js","./slide-nav":"js/slide-nav.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -1539,7 +1566,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61112" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65321" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

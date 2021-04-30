@@ -1,39 +1,61 @@
 .button-group {
   display: flex;
-  flex-direction: column;
-  
+  align-items: center;
+  flex-direction: column
 }
 .add-to-cart {
   @include btn-reset();
-  background-color: $primary;
-  padding: 1.6em 3em;
-  color: white;
   border-radius: 30px;
   font-weight: 800;
-  width: 100%;
-  font-size: 0.6em;
+  font-size: 1em;
   cursor: pointer;
   text-decoration: none;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  position: relative;
+  margin-bottom: 2em;
+  
+  span:first-of-type {
+    background-color: $primary;
+    color: white;
+    width: 24px;
+    height: 24px;
+    margin-right: 1em;
+    // position: absolute;
+    position: relative;
+    display: block;
+    border-radius: 100%;
+
+    svg {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 80%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &:active {
+    top: 1px;
+  }
 }
 
 .view-details {
   display: inline-block;
-  margin-bottom: 1em;
   width: 100%;
-  border: 2px solid $primary;
-  padding: 1em 0em;
-  text-align: center;
+  text-align: right;
   color: $primary;
   border-radius: 30px;
   font-weight: 800;
-  font-size: 0.6em;
+  font-size: 1em;
   cursor: pointer;
+  margin-left: 0.8em;
   text-decoration: none;
-
-  &:hover {
-    color: white;
-    background-color: $primary;
-    
-  }
 }
 
+@media(min-width: $bp-sm) {
+  .add-to-cart, 
+  .view-details {
+    font-size: 0.75em;
+  }
+}
