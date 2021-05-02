@@ -1506,10 +1506,21 @@ function _default() {
     $('body, html').animate({
       scrollTop: $(id).offset().top - total_heights + 'px'
     });
+    console.log(total_heights);
+  };
+
+  var scrollToTop = function scrollToTop(event) {
+    event.preventDefault();
+    $('body, html').animate({
+      scrollTop: 0 + 'px'
+    }, 1000);
   };
 
   $('.start-cart__nav a').on('click', function (event) {
     return slideNav(event);
+  });
+  $('.scroll-top a').on('click', function (event) {
+    return scrollToTop(event);
   });
 }
 },{}],"js/app.js":[function(require,module,exports) {
@@ -1536,7 +1547,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 (0, _sideNav.default)();
 (0, _slideNav.default)();
 window.addEventListener('load', function () {
-  return (0, _productSlider.default)();
+  (0, _productSlider.default)();
+  setTimeout(function () {
+    return document.getElementsByTagName('body')[0].classList.add('loaded');
+  });
 });
 },{"../styles/style.scss":"styles/style.scss","./lazy-load/index":"js/lazy-load/index.js","./side-nav":"js/side-nav.js","./product-slider":"js/product-slider.js","./add-to-cart":"js/add-to-cart.js","./side-cart":"js/side-cart.js","./slide-nav":"js/slide-nav.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -1566,7 +1580,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50375" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63546" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -11,10 +11,17 @@ export default function() {
       scrollTop: $(id).offset().top - total_heights +'px'
     })
 
+    console.log(total_heights)
+  }
 
-
+  const scrollToTop = event => {
+    event.preventDefault();
+    $('body, html').animate({
+      scrollTop: 0 +'px'
+    }, 1000)
   }
 
 
   $('.start-cart__nav a').on('click', event => slideNav(event))
+  $('.scroll-top a').on('click', event => scrollToTop(event))
 }

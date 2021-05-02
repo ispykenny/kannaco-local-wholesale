@@ -9,5 +9,9 @@ sideCart();
 addToCart();
 sidenav();
 slideNav();
-window.addEventListener('load', () => product_slider())
+window.addEventListener('load', () => {
+  product_slider();
+  setTimeout(() => document.getElementsByTagName('body')[0].classList.add('loaded'))
+  }
+)
 

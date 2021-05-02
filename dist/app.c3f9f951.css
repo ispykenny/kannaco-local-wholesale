@@ -146,6 +146,11 @@ https://flickity.metafizzy.co
 
 body {
   margin: 0;
+  opacity: 0;
+}
+body.loaded {
+  transition: opacity 600ms ease;
+  opacity: 1;
 }
 
 main {
@@ -998,7 +1003,7 @@ header {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 80%;
+  width: 100%;
   transform: translate(-50%, -50%);
 }
 .add-to-cart:active {
@@ -1251,8 +1256,8 @@ footer {
   margin-top: 4em;
 }
 
-footer .inner:first-of-type {
-  padding: 2.5em 0em;
+footer > .inner {
+  padding: 6em 0em 2.5em 0em;
 }
 
 .footer-group__column ul {
@@ -1356,8 +1361,47 @@ footer .inner:first-of-type {
   color: #808080;
 }
 
+.scroll-top {
+  text-align: center;
+  position: relative;
+}
+.scroll-top a {
+  position: absolute;
+  display: inline-block;
+  top: -50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #DA6227;
+  color: white;
+  height: 56px;
+  width: 56px;
+  border-radius: 100%;
+  box-shadow: 0px 0px 30px rgba(218, 98, 39, 0.8);
+}
+.scroll-top a svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.scroll-top a:active {
+  top: 1px;
+}
+
+.has-payments {
+  width: 24%;
+}
+
+.payment-container {
+  display: flex;
+  justify-content: space-between;
+}
+.payment-container .payment-item {
+  width: 24%;
+}
+
 @media (min-width: 767px) {
-  footer .inner:first-of-type {
+  footer > .inner {
     padding: 6em 0em 4em 0em;
   }
 
@@ -1398,6 +1442,39 @@ footer .inner:first-of-type {
   .fda p {
     font-size: 0.7em;
   }
+}
+.modal {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.modal__liner {
+  position: relative;
+  height: 100vh;
+  min-height: 400px;
+  width: 100%;
+  overflow: scroll;
+}
+
+.modal__element {
+  width: 80%;
+  background: white;
+  max-width: 1000px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+}
+
+.modal__inner {
+  padding: 4em;
 }
 
 /*# sourceMappingURL=/app.c3f9f951.css.map */

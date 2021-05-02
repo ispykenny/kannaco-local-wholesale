@@ -1,0 +1,31 @@
+.modal {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  top: 0; left: 0;
+  z-index: 9999;
+  overflow: auto;
+  background: rgba(black, 0.8);
+}
+
+.modal__liner {
+  position: relative;
+  height: 100vh;
+  min-height: 400px;
+  width: 100%;
+  overflow: scroll;
+}
+
+.modal__element {
+  width: 80%;
+  background: white;
+  max-width: 1000px;
+  position: absolute;
+  top: 50%; left: 50%;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+}
+
+.modal__inner {
+  padding: 4em;
+}

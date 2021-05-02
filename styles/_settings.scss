@@ -2,10 +2,14 @@
 
 body {
   margin: 0;
+  opacity: 0;
+
+  &.loaded {
+    transition: opacity 600ms ease;
+    opacity: 1;
+  }
 }
 main {
-  // overflow: hidden;
-  // max-width: 1800px;
   position: relative;
   background: white;
   margin: auto;
