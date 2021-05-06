@@ -1523,6 +1523,86 @@ function _default() {
     return scrollToTop(event);
   });
 }
+},{}],"js/modal.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _default;
+
+function _default() {
+  var modal_trigger = document.querySelectorAll('.view-details');
+  var body = document.getElementsByTagName('body')[0];
+
+  var product_data_fetcher = function product_data_fetcher($selector) {
+    var data_root = $selector.closest('.product-group__item');
+    var product_image = $selector.closest('.product-group__item');
+    var price = data_root.querySelector('.product-group__price').innerHTML;
+    var product_title = data_root.querySelector('.product-group__title').innerText;
+    document.querySelector('.modal').innerHTML = "\n    <div class=\"modal__liner\">\n      <div class=\"modal__element\">\n        <div class=\"modal__inner\">\n          <div class=\"modal__product-image\">\n            <div class=\"image-el loaded\" style=\"position: relative; width: auto; height: 0px; padding-bottom: 100%;\">\n              <img class=\"loaded\" src=\"".concat(product_image.querySelector('img').getAttribute('src'), "\" style=\"position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity 1 !important;\">\n            </div>\n          </div>\n          <div class=\"modal__product-details\">\n            <div class=\"modal__product-info\">\n              <h4>").concat(price, "</h4>\n              <h1>").concat(product_title, "</h1>\n              ").concat(data_root.getAttribute('data-content'), "\n            </div>\n            <div class=\"modal__add-btn\">\n              <button class=\"close-modal\">\n                Cancel\n              </button>\n              <form action=\"\">\n                <button class=\"add-to-cart\">\n                  <span>\n                    <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-plus\"><line x1=\"12\" y1=\"5\" x2=\"12\" y2=\"19\"></line><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"></line></svg>\n                  </span>\n                  <span>Quick Add</span>\n                </button>\n              </form>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>    \n    ");
+  };
+
+  var init_modal = function init_modal(event) {
+    event.preventDefault();
+
+    if (body.classList.contains('modal-showing')) {
+      body.classList.remove('modal-showing');
+      body.classList.remove('modal-element-inview');
+      document.querySelector('.modal').innerHTML = "";
+    } else {
+      body.classList.add('modal-showing');
+      setTimeout(function () {
+        return body.classList.add('modal-element-inview');
+      });
+      var the_active_element = event.currentTarget;
+      product_data_fetcher(the_active_element);
+      document.querySelector('.close-modal').addEventListener('click', function (event) {
+        return init_modal(event);
+      });
+      setTimeout(function () {
+        var height = document.querySelector('.modal__element').clientHeight + 100;
+        document.querySelector('.modal__liner').style.minHeight = height;
+      });
+    }
+  };
+
+  var debounce = function debounce(func, wait, immediate) {
+    var timeout;
+    return function () {
+      var context = this,
+          args = arguments;
+
+      var later = function later() {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+  };
+
+  var reset_modal_window = function reset_modal_window() {
+    if (body.classList.contains('modal-showing')) {
+      var height = document.querySelector('.modal__element').clientHeight + 100;
+      document.querySelector('.modal__liner').style.minHeight = height;
+    }
+  };
+
+  modal_trigger.forEach(function (trigger) {
+    trigger.addEventListener('click', function (event) {
+      return init_modal(event);
+    });
+  });
+  var run_modal_height_adjuster = debounce(function () {
+    // All the taxing stuff you do
+    reset_modal_window();
+  }, 250);
+  window.addEventListener('resize', run_modal_height_adjuster);
+}
 },{}],"js/app.js":[function(require,module,exports) {
 "use strict";
 
@@ -1540,8 +1620,11 @@ var _sideCart = _interopRequireDefault(require("./side-cart"));
 
 var _slideNav = _interopRequireDefault(require("./slide-nav"));
 
+var _modal = _interopRequireDefault(require("./modal"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(0, _modal.default)();
 (0, _sideCart.default)();
 (0, _addToCart.default)();
 (0, _sideNav.default)();
@@ -1552,7 +1635,7 @@ window.addEventListener('load', function () {
     return document.getElementsByTagName('body')[0].classList.add('loaded');
   });
 });
-},{"../styles/style.scss":"styles/style.scss","./lazy-load/index":"js/lazy-load/index.js","./side-nav":"js/side-nav.js","./product-slider":"js/product-slider.js","./add-to-cart":"js/add-to-cart.js","./side-cart":"js/side-cart.js","./slide-nav":"js/slide-nav.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"../styles/style.scss":"styles/style.scss","./lazy-load/index":"js/lazy-load/index.js","./side-nav":"js/side-nav.js","./product-slider":"js/product-slider.js","./add-to-cart":"js/add-to-cart.js","./side-cart":"js/side-cart.js","./slide-nav":"js/slide-nav.js","./modal":"js/modal.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -1580,7 +1663,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63546" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64855" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

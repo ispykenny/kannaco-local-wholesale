@@ -1,3 +1,9 @@
+body {
+  &.modal-showing {
+    overflow: hidden;
+  }
+}
+
 .modal {
   position: fixed;
   height: 100vh;
@@ -6,26 +12,133 @@
   z-index: 9999;
   overflow: auto;
   background: rgba(black, 0.8);
+  display: none;
+  visibility: hidden;
 }
 
 .modal__liner {
   position: relative;
   height: 100vh;
-  min-height: 400px;
   width: 100%;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .modal__element {
-  width: 80%;
+  will-change: contents;
+  width: 90%;
   background: white;
-  max-width: 1000px;
+  max-width: 1200px;
   position: absolute;
   top: 50%; left: 50%;
   border-radius: 10px;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -30%);
+  opacity: 0;
+  transition: all 400ms $ease-out-circ;
 }
 
 .modal__inner {
-  padding: 4em;
+  padding: 1em 1em;
+
+  display: flex;
+  // justify-content: space-between;
+  flex-direction: column;
+
+  & > div { 
+    // width: 49%;
+    width: 100%;
+  }
+}
+
+.modal__product-info {
+  padding: 2em 2em 1em 2em;
+  // max-height: 380px;
+  overflow: auto;
+
+  h4 {
+    margin-bottom: 0.5em;
+    font-size: 1.2em;
+    color: $primary;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  p {
+    font-size: 0.85em;
+  }
+}
+
+.modal__add-btn {
+  padding: 2em 2em 0em 2em;
+}
+
+
+
+.modal-showing {
+  .modal {
+    visibility: visible;
+    display: block;
+  }
+
+}
+
+.modal-element-inview {
+  .modal__element {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.modal__add-btn {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #eee;
+  margin-top: 2em;
+  padding-bottom: 2em;
+  justify-content: flex-end;
+
+  form {
+    margin-left: 2em;
+  }
+
+  .add-to-cart, form {
+    margin-bottom: 0;
+  }
+  .close-modal {
+    @include btn-reset();
+    font-weight: 800;
+    color: #a1a1a1;
+    cursor: pointer;
+    font-size: 1em;
+  }
+
+  .add-to-cart {
+    background: $primary;
+    color: white;
+    padding: 0.8em 1.5em;
+
+    span:first-of-type {
+      background: white;
+      svg {
+        stroke: $primary;
+      }
+    }
+  }
+}
+
+
+@media(min-width: $bp-md) {  
+  .modal__inner {
+    justify-content: space-between;
+    flex-direction: row;
+  
+    & > div { 
+      width: 49%;
+    }
+  }
+
+  .modal__product-info {
+    max-height: 380px;
+  }
 }

@@ -5,6 +5,8 @@ import product_slider from './product-slider'
 import addToCart from './add-to-cart';
 import sideCart from './side-cart';
 import slideNav from './slide-nav';
+import modal from './modal';
+modal()
 sideCart();
 addToCart();
 sidenav();
