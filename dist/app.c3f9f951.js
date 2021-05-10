@@ -1598,7 +1598,6 @@ function _default() {
     });
   });
   var run_modal_height_adjuster = debounce(function () {
-    // All the taxing stuff you do
     reset_modal_window();
   }, 250);
   window.addEventListener('resize', run_modal_height_adjuster);

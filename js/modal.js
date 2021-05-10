@@ -44,8 +44,6 @@ export default function() {
     `
   }
 
-  
-
 
   const init_modal = event => {
     event.preventDefault();
@@ -95,8 +93,7 @@ export default function() {
   })
 
 
-  var run_modal_height_adjuster = debounce(function() {
-    // All the taxing stuff you do
+  const run_modal_height_adjuster = debounce(function() {
     reset_modal_window()
   }, 250);
   
