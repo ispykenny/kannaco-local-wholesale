@@ -1367,7 +1367,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = _default;
 
 function _default() {
-  var menuTrigger = document.querySelector('.menu-burger');
+  var menuTrigger = document.querySelector('.menu-trigger');
   var closeTrigger = document.querySelector('.close-side-nav');
   var body = document.getElementsByTagName('body')[0];
   var navShowing = false;
@@ -1456,12 +1456,14 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = _default;
 
 function _default() {
-  var cart_button = document.querySelector('.ka-cart button');
+  var cart_button = document.querySelector('.cart a');
   var close_side_cart = document.getElementById('close-side-cart__btn');
   var body = document.getElementsByTagName('body')[0];
   var side_nav_showing = false;
 
-  var init_side_cart = function init_side_cart() {
+  var init_side_cart = function init_side_cart(event) {
+    event.preventDefault();
+
     if (!body.classList.contains('showing-side-cart')) {
       body.classList.add('showing-side-cart');
       setTimeout(function () {
@@ -1474,7 +1476,9 @@ function _default() {
   };
 
   close_side_cart.addEventListener('click', init_side_cart);
-  cart_button.addEventListener('click', init_side_cart);
+  cart_button.addEventListener('click', function (event) {
+    return init_side_cart(event);
+  });
   window.addEventListener('click', function (event) {
     if (side_nav_showing && body.classList.contains('showing-side-cart')) {
       console.log('clickity', side_nav_showing);
@@ -1662,7 +1666,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57013" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63176" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

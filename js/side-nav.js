@@ -1,5 +1,5 @@
 export default function() {
-  const menuTrigger = document.querySelector('.menu-burger');
+  const menuTrigger = document.querySelector('.menu-trigger');
   const closeTrigger = document.querySelector('.close-side-nav')
   const body = document.getElementsByTagName('body')[0];
   let navShowing = false;

@@ -1,0 +1,32 @@
+.sparky {
+  position: relative;
+  max-width: 1600px;
+  z-index: 73;
+  width: 90%;
+  margin: 1em auto 3em auto;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 40px rgba(black, 0.1);
+
+  .inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 0em;
+  }
+}
+
+.logo {
+  display: inline-block;
+  width: 40px;
+}
+
+.sparky a {
+  margin-right: 1.5em;
+}
+
+.nav-el{
+  align-items: center;
+  display: flex;
+  
+}
