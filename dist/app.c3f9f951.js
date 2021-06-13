@@ -1447,50 +1447,6 @@ function _default() {
     });
   });
 }
-},{}],"js/side-cart.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _default;
-
-function _default() {
-  var cart_button = document.querySelector('.cart a');
-  var close_side_cart = document.getElementById('close-side-cart__btn');
-  var body = document.getElementsByTagName('body')[0];
-  var side_nav_showing = false;
-
-  var init_side_cart = function init_side_cart(event) {
-    event.preventDefault();
-
-    if (!body.classList.contains('showing-side-cart')) {
-      body.classList.add('showing-side-cart');
-      setTimeout(function () {
-        return side_nav_showing = true;
-      });
-    } else {
-      body.classList.remove('showing-side-cart');
-      side_nav_showing = false;
-    }
-  };
-
-  close_side_cart.addEventListener('click', init_side_cart);
-  cart_button.addEventListener('click', function (event) {
-    return init_side_cart(event);
-  });
-  window.addEventListener('click', function (event) {
-    if (side_nav_showing && body.classList.contains('showing-side-cart')) {
-      console.log('clickity', side_nav_showing);
-
-      if (!event.target.closest('.side-cart')) {
-        console.log('accepted');
-        body.classList.remove('showing-side-cart');
-        side_nav_showing = false;
-      }
-    }
-  });
-}
 },{}],"js/slide-nav.js":[function(require,module,exports) {
 "use strict";
 
@@ -1606,7 +1562,104 @@ function _default() {
   }, 250);
   window.addEventListener('resize', run_modal_height_adjuster);
 }
-},{}],"js/app.js":[function(require,module,exports) {
+},{}],"js/side-cart.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.init_side_cart = void 0;
+var cart_button = document.querySelectorAll('.cart a');
+var close_side_cart = document.getElementById('close-side-cart__btn');
+var body = document.getElementsByTagName('body')[0];
+var side_nav_showing = false;
+
+var init_side_cart = function init_side_cart(event) {
+  event.preventDefault();
+
+  if (!body.classList.contains('showing-side-cart')) {
+    body.classList.add('showing-side-cart');
+    setTimeout(function () {
+      return side_nav_showing = true;
+    });
+  } else {
+    body.classList.remove('showing-side-cart');
+    side_nav_showing = false;
+  }
+};
+
+exports.init_side_cart = init_side_cart;
+close_side_cart.addEventListener('click', init_side_cart);
+cart_button.forEach(function (c_b) {
+  return c_b.addEventListener('click', function (event) {
+    return init_side_cart(event);
+  });
+});
+window.addEventListener('click', function (event) {
+  if (side_nav_showing && body.classList.contains('showing-side-cart')) {
+    console.log('clickity', side_nav_showing);
+
+    if (!event.target.closest('.side-cart')) {
+      console.log('accepted');
+      body.classList.remove('showing-side-cart');
+      side_nav_showing = false;
+    }
+  }
+});
+},{}],"js/top-nav.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _default;
+
+var _sideCart = require("./side-cart");
+
+function _default() {
+  var clone_top_nav = document.createElement('div');
+  clone_top_nav.classList.add('secondary-nav');
+  clone_top_nav.innerHTML = document.querySelector('.top-nav').outerHTML;
+  document.querySelector('main').prepend(clone_top_nav);
+  clone_top_nav.addEventListener('click', function (event) {
+    return (0, _sideCart.init_side_cart)(event);
+  });
+  var has_scrolled = false;
+  var element_to_show = document.querySelector('.sparky .inner');
+  var rect = element_to_show.getBoundingClientRect();
+  var height;
+  document.querySelector('.start-cart').style.top = clone_top_nav.offsetHeight + 'px';
+
+  var update_scroller = function update_scroller() {
+    has_scrolled = true;
+    height = rect.top + element_to_show.offsetHeight;
+  };
+
+  var scroll_functions = function scroll_functions() {
+    if (has_scrolled) {
+      console.log('scrolling');
+
+      if (window.scrollY >= height) {
+        document.body.classList.add('show-secondary-nav');
+        setTimeout(function () {
+          return document.body.classList.add('secondary-nav-built');
+        });
+      } else {
+        console.log('done?');
+        document.body.classList.remove('show-secondary-nav');
+        document.body.classList.remove('secondary-nav-built');
+      }
+
+      has_scrolled = false;
+    }
+
+    requestAnimationFrame(scroll_functions);
+  };
+
+  requestAnimationFrame(scroll_functions);
+  window.addEventListener('scroll', update_scroller);
+}
+},{"./side-cart":"js/side-cart.js"}],"js/app.js":[function(require,module,exports) {
 "use strict";
 
 require("../styles/style.scss");
@@ -1619,26 +1672,26 @@ var _productSlider = _interopRequireDefault(require("./product-slider"));
 
 var _addToCart = _interopRequireDefault(require("./add-to-cart"));
 
-var _sideCart = _interopRequireDefault(require("./side-cart"));
-
 var _slideNav = _interopRequireDefault(require("./slide-nav"));
 
 var _modal = _interopRequireDefault(require("./modal"));
 
+var _topNav = _interopRequireDefault(require("./top-nav"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _modal.default)();
-(0, _sideCart.default)();
 (0, _addToCart.default)();
 (0, _sideNav.default)();
 (0, _slideNav.default)();
+(0, _topNav.default)();
 window.addEventListener('load', function () {
   (0, _productSlider.default)();
   setTimeout(function () {
     return document.getElementsByTagName('body')[0].classList.add('loaded');
   });
 });
-},{"../styles/style.scss":"styles/style.scss","./lazy-load/index":"js/lazy-load/index.js","./side-nav":"js/side-nav.js","./product-slider":"js/product-slider.js","./add-to-cart":"js/add-to-cart.js","./side-cart":"js/side-cart.js","./slide-nav":"js/slide-nav.js","./modal":"js/modal.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"../styles/style.scss":"styles/style.scss","./lazy-load/index":"js/lazy-load/index.js","./side-nav":"js/side-nav.js","./product-slider":"js/product-slider.js","./add-to-cart":"js/add-to-cart.js","./slide-nav":"js/slide-nav.js","./modal":"js/modal.js","./top-nav":"js/top-nav.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -1666,7 +1719,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63176" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58408" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,0 +1,40 @@
+.secondary-nav {
+  position: fixed;
+  top: 0;  left: 0;
+  width: 100%;
+  background: red;
+  z-index: 999;
+  transition: transform 100ms ease;
+  transform: translateY(-100%);
+}
+
+.show-secondary-nav {
+  .secondary-nav {
+    transform: translateY(0px);
+  }
+
+}
+.secondary-nav-built {
+  .secondary-nav {
+
+    @for $i from 0 through 20 {
+      .top-nav__actionable {
+        opacity: 1;
+        transition: all 200ms $ease-out-back;
+        transform: translateY(0px);
+
+        &:nth-child(#{$i}) {
+          transition-delay: 60ms * $i;
+        }
+      }
+    }
+  }
+}
+
+.secondary-nav {
+  .top-nav__actionable {
+    position: relative;
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
